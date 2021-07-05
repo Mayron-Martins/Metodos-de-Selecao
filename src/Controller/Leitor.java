@@ -13,22 +13,22 @@ import java.util.ArrayList;
  */
 public class Leitor {
         public ArrayList<Integer> leitor(String path) {
-        var numList = new ArrayList<Integer>();
+        ArrayList<Integer> numList = new ArrayList<>();
         
         try {
-            var reader = new BufferedReader(
-                new InputStreamReader(
+            BufferedReader reader = new BufferedReader(
+                new InputStreamReader (
                 new FileInputStream(path)
                 )
             );
 
             
-            var txt = new ArrayList<String>();
-            for (var line = reader.readLine(); line != null; line = reader.readLine())
+            ArrayList<String> txt = new ArrayList<>();
+            for (String line = reader.readLine(); line != null; line = reader.readLine())
                 txt.add(line);
             reader.close();
 
-            for (var num : txt)
+            for (String num : txt)
                 numList.add(Integer.parseInt(num));
 
         } catch (IOException e) {

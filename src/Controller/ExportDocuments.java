@@ -5,8 +5,10 @@
  */
 package Controller;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -105,4 +107,16 @@ public class ExportDocuments {
             }
         }
      }
+    
+    public void geraArquivoTxt(String conteudo, String caminho) {
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(caminho, true));  
+			writer.write(conteudo);
+			writer.newLine();
+                        writer.flush();
+                        writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
 }

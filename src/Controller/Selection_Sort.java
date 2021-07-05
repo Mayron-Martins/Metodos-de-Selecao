@@ -5,10 +5,37 @@
  */
 package Controller;
 
+
+import java.util.ArrayList;
+
 /**
  *
  * @author Mayro
  */
 public class Selection_Sort {
+    private long timeSelection = 0;
+    
+    public void SelectionSort(ArrayList <Integer> array){
+        timeSelection = System.nanoTime();
+        for (int fixo = 0; fixo < array.size() - 1; fixo++) {
+        int menor = fixo;
+            for (int i = menor + 1; i < array.size(); i++) {
+               if (array.get(i) < array.get(menor)) {
+                  menor = i;
+               }
+            }
+            if (menor != fixo) {
+              int t = array.get(fixo);
+              array.set(fixo, array.get(menor));
+              array.set(menor, t);
+            }
+      }
+        timeSelection = System.nanoTime()-timeSelection;
+    }
+
+    public long getTimeSelection() {
+        return timeSelection;
+    }
+    
     
 }

@@ -215,9 +215,11 @@ public class Desktop extends javax.swing.JFrame {
         botaoGerarGrafico.setBorder(null);
         jPanel1.add(botaoGerarGrafico, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, 130, 40));
 
+        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setText("Quick");
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 590, -1, -1));
 
+        jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox2.setText("Selection");
         jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 610, -1, -1));
 

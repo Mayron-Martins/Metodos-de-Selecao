@@ -15,6 +15,11 @@ public class Principal {
     private ArrayList <Integer> array = new ArrayList<>();
     private ArrayList <Integer> arrayOrdenado = new ArrayList<>();
     
+    public Principal(){
+        FilesGenerate gerarPastas = new FilesGenerate();
+        gerarPastas.gerarPastas();
+    }
+    
     public void limparTabelas(){
         //Pega as tabelas e limpa os campos
     }
@@ -44,6 +49,31 @@ public class Principal {
             //Coloca o valor de tempo no campo correspondente
         }
         
-        //Inicia a função de exportação do array para pasta designada
+        //joga o valor do array ordenado em arrayOrdenado
+    }
+    
+    public void gerarGraficos(){
+        //Pega os dados da tabela e gera um gráfico em outra tela
+    }
+    
+    public void exportarDados(boolean medias){
+        //Pega os dados da tabela, faz as médias e inicia a função de exportar para excel
+        if(!medias){
+            //dados da tabela principal
+        }
+        else{
+            //dados da tabela de médias
+        }
+        
+    }
+    
+    public void salvarMedia(){
+        //Inicia a função de criação de txt, se não existir
+        //Joga o valor das médias dentro do arquivo de txt
+        //Joga o valor das médias nas tabelas de médias
+    }
+    
+    public void exportarOrdenação(){
+        //inicia a função de exportação com o arrayOrdenado
     }
 }

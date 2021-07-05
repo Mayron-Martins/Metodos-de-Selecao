@@ -15,13 +15,16 @@ import javax.swing.JButton;
  * @author Mayro
  */
 public class Desktop extends javax.swing.JFrame {
-
+private final Medias telaMedias;
+private final Grafico telaGrafico;
     /**
      * Creates new form Desktop
      */
     public Desktop() {
         initComponents();
         this.trocaPaineis(false);
+        telaMedias=new Medias(this, false);
+        telaGrafico=new Grafico(this, false);
     }
 
     /**
@@ -41,7 +44,7 @@ public class Desktop extends javax.swing.JFrame {
         PainelSobreposto = new javax.swing.JPanel();
         botaoImportar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        botaoGerar = new javax.swing.JButton();
+        botaoGerar1 = new javax.swing.JButton();
         painelGeracaoNumeros = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         campoQuantidade = new javax.swing.JTextField();
@@ -57,14 +60,15 @@ public class Desktop extends javax.swing.JFrame {
         botaoGerarGrafico = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
+        btnSalvar = new javax.swing.JButton();
+        botaoGerarGrafico1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 750));
-        setPreferredSize(new java.awt.Dimension(600, 750));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabelaQuick.setModel(new javax.swing.table.DefaultTableModel(
@@ -85,7 +89,7 @@ public class Desktop extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabelaQuick);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 270, 400));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 270, 400));
 
         tabelaSelection.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,14 +109,14 @@ public class Desktop extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabelaSelection);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 270, 400));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 270, 400));
 
-        PainelSobreposto.setBackground(new java.awt.Color(0, 153, 153));
+        PainelSobreposto.setBackground(new java.awt.Color(56, 151, 51));
         PainelSobreposto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        botaoImportar.setBackground(new java.awt.Color(255, 204, 51));
-        botaoImportar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        botaoImportar.setForeground(new java.awt.Color(51, 51, 51));
+        botaoImportar.setBackground(new java.awt.Color(255, 70, 69));
+        botaoImportar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        botaoImportar.setForeground(new java.awt.Color(255, 255, 255));
         botaoImportar.setText("Importar Números");
         botaoImportar.setBorder(null);
         PainelSobreposto.add(botaoImportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 56, 130, 40));
@@ -123,21 +127,21 @@ public class Desktop extends javax.swing.JFrame {
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         PainelSobreposto.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, -1, -1));
 
-        botaoGerar.setBackground(new java.awt.Color(102, 255, 204));
-        botaoGerar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        botaoGerar.setForeground(new java.awt.Color(51, 51, 51));
-        botaoGerar.setText("Gerar Números");
-        botaoGerar.setBorder(null);
-        botaoGerar.addActionListener(new java.awt.event.ActionListener() {
+        botaoGerar1.setBackground(new java.awt.Color(198, 22, 21));
+        botaoGerar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        botaoGerar1.setForeground(new java.awt.Color(255, 255, 255));
+        botaoGerar1.setText("Gerar Números");
+        botaoGerar1.setBorder(null);
+        botaoGerar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoGerarActionPerformed(evt);
+                botaoGerar1ActionPerformed(evt);
             }
         });
-        PainelSobreposto.add(botaoGerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, 40));
+        PainelSobreposto.add(botaoGerar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, 40));
 
         jPanel1.add(PainelSobreposto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 100));
 
-        painelGeracaoNumeros.setBackground(new java.awt.Color(0, 102, 102));
+        painelGeracaoNumeros.setBackground(new java.awt.Color(46, 212, 123));
         painelGeracaoNumeros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -158,16 +162,16 @@ public class Desktop extends javax.swing.JFrame {
         jLabel3.setText("Quantidade");
         painelGeracaoNumeros.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
-        botaoImplementar.setBackground(new java.awt.Color(255, 204, 51));
+        botaoImplementar.setBackground(new java.awt.Color(255, 70, 69));
         botaoImplementar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        botaoImplementar.setForeground(new java.awt.Color(51, 51, 51));
+        botaoImplementar.setForeground(new java.awt.Color(255, 255, 255));
         botaoImplementar.setText("Implementar Métodos");
         botaoImplementar.setBorder(null);
         painelGeracaoNumeros.add(botaoImplementar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 160, 30));
 
-        botaoGerarNumeros.setBackground(new java.awt.Color(102, 255, 204));
+        botaoGerarNumeros.setBackground(new java.awt.Color(255, 70, 69));
         botaoGerarNumeros.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        botaoGerarNumeros.setForeground(new java.awt.Color(51, 51, 51));
+        botaoGerarNumeros.setForeground(new java.awt.Color(255, 255, 255));
         botaoGerarNumeros.setText("Gerar Números");
         botaoGerarNumeros.setBorder(null);
         painelGeracaoNumeros.add(botaoGerarNumeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 130, 30));
@@ -185,43 +189,77 @@ public class Desktop extends javax.swing.JFrame {
         jPanel1.add(painelGeracaoNumeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 100));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Quick Sort");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Selection Sort");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
 
-        botaoMedias.setBackground(new java.awt.Color(102, 102, 255));
+        botaoMedias.setBackground(new java.awt.Color(51, 51, 51));
         botaoMedias.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         botaoMedias.setForeground(new java.awt.Color(255, 255, 255));
         botaoMedias.setText("Médias Anteriores");
         botaoMedias.setBorder(null);
-        jPanel1.add(botaoMedias, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 660, 120, 30));
+        botaoMedias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoMediasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botaoMedias, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 700, 120, 30));
 
-        botaoExportarOrdenacao.setBackground(new java.awt.Color(255, 204, 51));
-        botaoExportarOrdenacao.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        botaoExportarOrdenacao.setForeground(new java.awt.Color(51, 51, 51));
+        botaoExportarOrdenacao.setBackground(new java.awt.Color(46, 212, 123));
+        botaoExportarOrdenacao.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        botaoExportarOrdenacao.setForeground(new java.awt.Color(102, 102, 102));
         botaoExportarOrdenacao.setText("Exportar Ordenação");
         botaoExportarOrdenacao.setBorder(null);
-        jPanel1.add(botaoExportarOrdenacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 640, 130, 40));
+        jPanel1.add(botaoExportarOrdenacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 680, 130, 40));
 
-        botaoGerarGrafico.setBackground(new java.awt.Color(255, 204, 51));
-        botaoGerarGrafico.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        botaoGerarGrafico.setForeground(new java.awt.Color(51, 51, 51));
-        botaoGerarGrafico.setText("Gerar Gráficos");
+        botaoGerarGrafico.setBackground(new java.awt.Color(46, 212, 123));
+        botaoGerarGrafico.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        botaoGerarGrafico.setForeground(new java.awt.Color(102, 102, 102));
+        botaoGerarGrafico.setText("Exportar Dados");
         botaoGerarGrafico.setBorder(null);
-        jPanel1.add(botaoGerarGrafico, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, 130, 40));
+        botaoGerarGrafico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoGerarGraficoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botaoGerarGrafico, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, 130, 40));
 
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox1.setText("Quick");
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 590, -1, -1));
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 580, -1, -1));
 
-        jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox2.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox2.setText("Selection");
-        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 610, -1, -1));
+        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 600, -1, -1));
+
+        btnSalvar.setBackground(new java.awt.Color(255, 70, 69));
+        btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvar.setText("Salvar Dados");
+        btnSalvar.setBorder(null);
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 650, 130, 40));
+
+        botaoGerarGrafico1.setBackground(new java.awt.Color(46, 212, 123));
+        botaoGerarGrafico1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        botaoGerarGrafico1.setForeground(new java.awt.Color(102, 102, 102));
+        botaoGerarGrafico1.setText("Gerar Gráficos");
+        botaoGerarGrafico1.setBorder(null);
+        botaoGerarGrafico1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoGerarGrafico1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botaoGerarGrafico1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 630, 130, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 750));
 
@@ -233,9 +271,30 @@ public class Desktop extends javax.swing.JFrame {
         trocaPaineis(false);
     }//GEN-LAST:event_botaoFecharGeracaoActionPerformed
 
-    private void botaoGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarActionPerformed
-        trocaPaineis(true);
-    }//GEN-LAST:event_botaoGerarActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void botaoGerar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerar1ActionPerformed
+       trocaPaineis(true);
+    }//GEN-LAST:event_botaoGerar1ActionPerformed
+
+    private void botaoGerarGraficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarGraficoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoGerarGraficoActionPerformed
+
+    private void botaoMediasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMediasActionPerformed
+        // TODO add your handling code here:
+        telaMedias.setModal(true);
+        telaMedias.setLocationRelativeTo(this);
+        telaMedias.setVisible(true);
+    }//GEN-LAST:event_botaoMediasActionPerformed
+
+    private void botaoGerarGrafico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarGrafico1ActionPerformed
+        telaGrafico.setModal(true);
+        telaGrafico.setLocationRelativeTo(this);
+        telaGrafico.setVisible(true);
+    }//GEN-LAST:event_botaoGerarGrafico1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,12 +335,14 @@ public class Desktop extends javax.swing.JFrame {
     private javax.swing.JPanel PainelSobreposto;
     private javax.swing.JButton botaoExportarOrdenacao;
     private javax.swing.JButton botaoFecharGeracao;
-    private javax.swing.JButton botaoGerar;
+    private javax.swing.JButton botaoGerar1;
     private javax.swing.JButton botaoGerarGrafico;
+    private javax.swing.JButton botaoGerarGrafico1;
     private javax.swing.JButton botaoGerarNumeros;
     private javax.swing.JButton botaoImplementar;
     private javax.swing.JButton botaoImportar;
     private javax.swing.JButton botaoMedias;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JTextField campoQuantidade;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;

@@ -8,6 +8,7 @@ package Controller.Paineis;
 import Controller.Auxiliar.ExportDocuments;
 import Controller.Principal;
 import View.Desktop;
+import View.Grafico;
 import View.Medias;
 import java.awt.Dialog;
 import java.io.BufferedReader;
@@ -148,6 +149,11 @@ public class MediasController extends Principal{
         }
     }
     
-    
+    @Override
+    public void gerarGraficos(){
+        Grafico telaGraficos = new Grafico(view, false);
+        GraficosController controlarGraficos = new GraficosController(view, telaGraficos);
+        controlarGraficos.gerarGraficos(tabelaMediaSelection, tabelaMediaQuick);
+    }
     
 }

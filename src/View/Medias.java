@@ -165,7 +165,7 @@ public class Medias extends javax.swing.JDialog {
     }//GEN-LAST:event_botaoGerarGraficoActionPerformed
 
     private void botaoGerarGrafico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarGrafico1ActionPerformed
-        // TODO add your handling code here:
+        controller.gerarGraficos();
     }//GEN-LAST:event_botaoGerarGrafico1ActionPerformed
 
     /**

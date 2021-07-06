@@ -6,6 +6,7 @@
 package View;
 
 import Controller.Paineis.GraficosController;
+import javax.swing.JPanel;
 
 /**
  *
@@ -36,6 +37,8 @@ public class Grafico extends javax.swing.JDialog {
         painelSelection = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         painelQuick = new javax.swing.JPanel();
+        botaoExportarGraficoQuick = new javax.swing.JButton();
+        botaoExportarGraficoSelection = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -87,6 +90,30 @@ public class Grafico extends javax.swing.JDialog {
 
         jPanel1.add(painelQuick, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, -1, -1));
 
+        botaoExportarGraficoQuick.setBackground(new java.awt.Color(46, 212, 123));
+        botaoExportarGraficoQuick.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        botaoExportarGraficoQuick.setForeground(new java.awt.Color(102, 102, 102));
+        botaoExportarGraficoQuick.setText("Exportar Gráfico");
+        botaoExportarGraficoQuick.setBorder(null);
+        botaoExportarGraficoQuick.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExportarGraficoQuickActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botaoExportarGraficoQuick, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 180, 40));
+
+        botaoExportarGraficoSelection.setBackground(new java.awt.Color(46, 212, 123));
+        botaoExportarGraficoSelection.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        botaoExportarGraficoSelection.setForeground(new java.awt.Color(102, 102, 102));
+        botaoExportarGraficoSelection.setText("Exportar Gráfico");
+        botaoExportarGraficoSelection.setBorder(null);
+        botaoExportarGraficoSelection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExportarGraficoSelectionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botaoExportarGraficoSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 180, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,6 +136,14 @@ public class Grafico extends javax.swing.JDialog {
         this.dispose();
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void botaoExportarGraficoQuickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExportarGraficoQuickActionPerformed
+        controller.exportarGraficos(2);
+    }//GEN-LAST:event_botaoExportarGraficoQuickActionPerformed
+
+    private void botaoExportarGraficoSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExportarGraficoSelectionActionPerformed
+       controller.exportarGraficos(1);
+    }//GEN-LAST:event_botaoExportarGraficoSelectionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,10 +189,22 @@ public class Grafico extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoExportarGraficoQuick;
+    private javax.swing.JButton botaoExportarGraficoSelection;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel painelQuick;
     private javax.swing.JPanel painelSelection;
     // End of variables declaration//GEN-END:variables
+
+    public JPanel getPainelQuick() {
+        return painelQuick;
+    }
+
+    public JPanel getPainelSelection() {
+        return painelSelection;
+    }
+
+    
 }

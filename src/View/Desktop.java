@@ -22,9 +22,7 @@ import javax.swing.JTextField;
 public class Desktop extends javax.swing.JFrame {
     private final Principal controller;
     private final MediasController controllerMedias;
-    private final GraficosController controllerGraficos;
     private final Medias telaMedias;
-    private final Grafico telaGrafico;
     
     /**
      * Creates new form Desktop
@@ -35,10 +33,8 @@ public class Desktop extends javax.swing.JFrame {
         
         
         telaMedias=new Medias(this, false);
-        telaGrafico=new Grafico(this, false);
         
         controllerMedias = new MediasController(this, telaMedias);
-        controllerGraficos = new GraficosController(this, telaGrafico);
         
         this.trocaPaineis(false);
         gerarNumeros(true);
@@ -340,9 +336,6 @@ public class Desktop extends javax.swing.JFrame {
 
     private void botaoGerarGrafico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarGrafico1ActionPerformed
         controller.gerarGraficos();
-        telaGrafico.setModal(true);
-        telaGrafico.setLocationRelativeTo(this);
-        telaGrafico.setVisible(true);
     }//GEN-LAST:event_botaoGerarGrafico1ActionPerformed
 
     private void botaoImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImportarActionPerformed

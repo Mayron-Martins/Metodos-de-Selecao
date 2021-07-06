@@ -9,7 +9,10 @@ import Controller.Auxiliar.ExportDocuments;
 import Controller.Auxiliar.FilesGenerate;
 import Controller.Auxiliar.GenerateNumbers;
 import Controller.Auxiliar.Leitor;
+import Controller.Paineis.GraficosController;
 import View.Desktop;
+import View.Grafico;
+import java.awt.Dialog;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -62,6 +65,12 @@ public class Principal {
             }
             
         }
+    }
+    
+    public void gerarGraficos(){
+        Grafico telaGraficos = new Grafico(view, false);
+        GraficosController controlarGraficos = new GraficosController(view, telaGraficos);
+        controlarGraficos.gerarGraficos(tabelaSelection, tabelaQuick);
     }
     
     public void importarNumeros(){
@@ -130,9 +139,6 @@ public class Principal {
         }
     }
     
-    public void gerarGraficos(){
-        //Pega os dados da tabela e gera um gráfico em outra tela
-    }
     
     public void exportarDados(){
         ExportDocuments exportar = new ExportDocuments();

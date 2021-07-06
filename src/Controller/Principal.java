@@ -68,9 +68,7 @@ public class Principal {
     }
     
     public void gerarGraficos(){
-        Grafico telaGraficos = new Grafico(view, false);
-        GraficosController controlarGraficos = new GraficosController(view, telaGraficos);
-        controlarGraficos.gerarGraficos(tabelaSelection, tabelaQuick);
+        Grafico telaGraficos = new Grafico(view, false, tabelaSelection, tabelaQuick);
     }
     
     public void importarNumeros(){

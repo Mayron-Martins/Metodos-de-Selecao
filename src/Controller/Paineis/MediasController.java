@@ -103,7 +103,6 @@ public class MediasController extends Principal{
         inserirMediasTabelas(System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Selection.txt", false);
         inserirMediasTabelas(System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Quick.txt", true);
         
-        view2.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         view2.setVisible(true);
     }
     
@@ -151,9 +150,7 @@ public class MediasController extends Principal{
     
     @Override
     public void gerarGraficos(){
-        Grafico telaGraficos = new Grafico(view, false);
-        GraficosController controlarGraficos = new GraficosController(view, telaGraficos);
-        controlarGraficos.gerarGraficos(tabelaMediaSelection, tabelaMediaQuick);
+        Grafico telaGraficos = new Grafico(view, false, tabelaMediaSelection, tabelaMediaQuick);
     }
     
 }

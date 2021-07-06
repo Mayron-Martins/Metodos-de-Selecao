@@ -31,14 +31,15 @@ public class Desktop extends javax.swing.JFrame {
         initComponents();
         controller = new Principal(this);
         
-        
         telaMedias=new Medias(this, false);
         
         controllerMedias = new MediasController(this, telaMedias);
         
+        
         this.trocaPaineis(false);
         gerarNumeros(true);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -356,6 +357,7 @@ public class Desktop extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
+        System.exit(1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -452,4 +454,6 @@ public class Desktop extends javax.swing.JFrame {
     public JTable getTabelaSelection() {
         return tabelaSelection;
     }
+
+    
 }

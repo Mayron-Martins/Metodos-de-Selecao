@@ -10,6 +10,10 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JDesktopPane;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
@@ -26,7 +30,7 @@ import org.jfree.data.xy.XYSeriesCollection;
  * @author Mayro
  */
 public class GraphicsGenerate {
-    public JFreeChart gerarGraficos(JPanel painel, ArrayList <Long> array, String titulo){
+    public JFreeChart gerarGraficos(JDialog painel, ArrayList <Long> array, String titulo){
         XYSeries pontos = pontos(array);
         XYDataset dataSetAreaXY = new XYSeriesCollection(pontos);
         
@@ -60,10 +64,16 @@ public class GraphicsGenerate {
         return graficoAreaXY;
     }
     
-    private void exibirGraficoEmFrame(JPanel painel, JFreeChart graficoAreaXY){
+    private void exibirGraficoEmFrame(JDialog painel, JFreeChart graficoAreaXY){
+        JFrame frame = new JFrame("Gráficos dos Métodos de Inserção");
+        frame.setPreferredSize(new Dimension(280, 290));
         ChartPanel painelDoGrafico = new ChartPanel(graficoAreaXY);
-        painelDoGrafico.setPreferredSize(new Dimension(painel.getHeight(), painel.getWidth()));
-        painel.add(painelDoGrafico);
+        painelDoGrafico.setPreferredSize(new Dimension(260, 280));
+        frame.add(painelDoGrafico);
+        frame.pack();
+        frame.setLocationRelativeTo(painel);
+        frame.setLocation(10, 90);
+        frame.setVisible(true);
     }
     
     public void criarArquivoJPEG(JFreeChart graficoAreaXY, String path, int largura, int altura){

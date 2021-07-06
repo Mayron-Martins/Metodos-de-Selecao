@@ -6,7 +6,10 @@
 package View;
 
 import Controller.Paineis.GraficosController;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,10 +20,10 @@ public class Grafico extends javax.swing.JDialog {
     /**
      * Creates new form Gráfico
      */
-    public Grafico(Desktop desktop, boolean modal) {
+    public Grafico(Desktop desktop, boolean modal, DefaultTableModel selection, DefaultTableModel quick) {
         super(desktop, modal);
         initComponents();
-        controller = new GraficosController(desktop, this);
+        controller = new GraficosController(desktop, this, selection, quick);
     }
 
     /**
@@ -34,36 +37,22 @@ public class Grafico extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        painelSelection = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        painelQuick = new javax.swing.JPanel();
         botaoExportarGraficoQuick = new javax.swing.JButton();
         botaoExportarGraficoSelection = new javax.swing.JButton();
+        painelSelection = new javax.swing.JDesktopPane();
+        painelQuick = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Gráfico");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
-
-        painelSelection.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout painelSelectionLayout = new javax.swing.GroupLayout(painelSelection);
-        painelSelection.setLayout(painelSelectionLayout);
-        painelSelectionLayout.setHorizontalGroup(
-            painelSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
-        );
-        painelSelectionLayout.setVerticalGroup(
-            painelSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(painelSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 270, 250));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setText("Gráficos");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 70, 69));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -74,21 +63,6 @@ public class Grafico extends javax.swing.JDialog {
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 480, 170, 40));
-
-        painelQuick.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout painelQuickLayout = new javax.swing.GroupLayout(painelQuick);
-        painelQuick.setLayout(painelQuickLayout);
-        painelQuickLayout.setHorizontalGroup(
-            painelQuickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
-        );
-        painelQuickLayout.setVerticalGroup(
-            painelQuickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(painelQuick, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, -1, -1));
 
         botaoExportarGraficoQuick.setBackground(new java.awt.Color(46, 212, 123));
         botaoExportarGraficoQuick.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -113,6 +87,8 @@ public class Grafico extends javax.swing.JDialog {
             }
         });
         jPanel1.add(botaoExportarGraficoSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 180, 40));
+        jPanel1.add(painelSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 280, 290));
+        jPanel1.add(painelQuick, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 280, 290));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,8 +108,7 @@ public class Grafico extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
+        controller.fechar();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -176,7 +151,7 @@ public class Grafico extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Grafico dialog = new Grafico(new Desktop(), true);
+                Grafico dialog = new Grafico(new Desktop(), true, new DefaultTableModel(), new DefaultTableModel());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -194,15 +169,15 @@ public class Grafico extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel painelQuick;
-    private javax.swing.JPanel painelSelection;
+    private javax.swing.JDesktopPane painelQuick;
+    private javax.swing.JDesktopPane painelSelection;
     // End of variables declaration//GEN-END:variables
 
-    public JPanel getPainelQuick() {
+    public JDesktopPane getPainelQuick() {
         return painelQuick;
     }
 
-    public JPanel getPainelSelection() {
+    public JDesktopPane getPainelSelection() {
         return painelSelection;
     }
 

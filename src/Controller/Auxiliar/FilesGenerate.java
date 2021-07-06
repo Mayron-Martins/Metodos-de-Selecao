@@ -6,6 +6,10 @@
 package Controller.Auxiliar;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 /**
  *
@@ -34,5 +38,17 @@ public class FilesGenerate {
             ExportDocuments gerarTxt = new ExportDocuments();
             gerarTxt.geraArquivoTxt("", mediasQuick.getPath());
         }
+    }
+    
+    public Long dataEHoraCodificada(){
+        LocalDateTime dataAtual = LocalDateTime.now();
+        Date data = Date.from(dataAtual.atZone(ZoneId.systemDefault()).toInstant());
+
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String dataFormatada = format.format(data);
+        dataFormatada = dataFormatada.replaceAll("/", "");
+        dataFormatada = dataFormatada.replaceAll(":", "");
+        dataFormatada = dataFormatada.replaceAll(" ", "");
+        return Long.valueOf(dataFormatada);
     }
 }

@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -114,6 +115,21 @@ public class ExportDocuments {
 			writer.write(conteudo);
 			writer.newLine();
                         writer.flush();
+                        writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public void geraArrayTxt(ArrayList <Integer> conteudo, String caminho) {
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(caminho, true));  
+                        for(int numero : conteudo){
+                            writer.write(numero);
+                            writer.newLine();
+                            writer.flush();
+                        }
+			
                         writer.close();
 		} catch (Exception e) {
 			e.printStackTrace();

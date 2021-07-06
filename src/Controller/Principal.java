@@ -26,6 +26,7 @@ public class Principal {
     protected final DefaultTableModel tabelaQuick;
     protected ArrayList <Integer> array = new ArrayList<>();
     protected ArrayList <Integer> arrayOrdenado = new ArrayList<>();
+    protected final FilesGenerate gerarPastas = new FilesGenerate();
     private int interacoes=50;
     private int totalValores=0;
     private long tempoMedioQuick=0;
@@ -35,7 +36,6 @@ public class Principal {
         this.view = view;
         tabelaSelection = (DefaultTableModel) view.getTabelaSelection().getModel();
         tabelaQuick = (DefaultTableModel) view.getTabelaQuick().getModel();
-        FilesGenerate gerarPastas = new FilesGenerate();
         gerarPastas.gerarPastas();
     }
     
@@ -146,6 +146,12 @@ public class Principal {
     }
     
     public void exportarOrdenação(){
-        //inicia a função de exportação com o arrayOrdenado
+        if(arrayOrdenado!=null){
+            ExportDocuments export = new ExportDocuments();
+            export.geraArrayTxt(arrayOrdenado, System.getProperty("user.home")+
+                    "/documents/Métodos de Ordenação/Números Ordenados/"+arrayOrdenado.size()+
+                    "N"+gerarPastas.dataEHoraCodificada()+".txt");
+        }
+        
     }
 }

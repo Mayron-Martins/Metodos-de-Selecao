@@ -57,11 +57,11 @@ public class Medias extends javax.swing.JDialog {
         PainelSobreposto.setBackground(new java.awt.Color(56, 151, 51));
         PainelSobreposto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Médias");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        PainelSobreposto.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, -1, -1));
+        PainelSobreposto.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
 
         jPanel1.add(PainelSobreposto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 100));
 

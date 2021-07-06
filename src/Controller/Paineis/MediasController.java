@@ -102,7 +102,7 @@ public class MediasController extends Principal{
         limparTabelas();
         inserirMediasTabelas(System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Selection.txt", false);
         inserirMediasTabelas(System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Quick.txt", true);
-        
+        view2.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         view2.setVisible(true);
     }
     

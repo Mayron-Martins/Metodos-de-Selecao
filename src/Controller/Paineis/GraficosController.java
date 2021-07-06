@@ -47,7 +47,8 @@ public class GraficosController extends Principal{
         if(temposQuick!=null){
             graphicsQuick = graficos.gerarGraficos(view2, temposQuick, "Método Quick Sort");
         }
-         view2.setVisible(true);
+        view2.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        view2.setVisible(true);
     }
     /*
     public void alterarlocalização(boolean abrindo, Window window){

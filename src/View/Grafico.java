@@ -45,6 +45,7 @@ public class Grafico extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(600, 750));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 153));
@@ -62,7 +63,7 @@ public class Grafico extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 480, 170, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 620, 170, 40));
 
         botaoExportarGraficoQuick.setBackground(new java.awt.Color(46, 212, 123));
         botaoExportarGraficoQuick.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -74,7 +75,7 @@ public class Grafico extends javax.swing.JDialog {
                 botaoExportarGraficoQuickActionPerformed(evt);
             }
         });
-        jPanel1.add(botaoExportarGraficoQuick, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 180, 40));
+        jPanel1.add(botaoExportarGraficoQuick, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 180, 40));
 
         botaoExportarGraficoSelection.setBackground(new java.awt.Color(46, 212, 123));
         botaoExportarGraficoSelection.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -86,9 +87,9 @@ public class Grafico extends javax.swing.JDialog {
                 botaoExportarGraficoSelectionActionPerformed(evt);
             }
         });
-        jPanel1.add(botaoExportarGraficoSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 180, 40));
-        jPanel1.add(painelSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 280, 290));
-        jPanel1.add(painelQuick, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 280, 290));
+        jPanel1.add(botaoExportarGraficoSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 180, 40));
+        jPanel1.add(painelSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 280, 290));
+        jPanel1.add(painelQuick, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 280, 290));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,8 +100,8 @@ public class Grafico extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

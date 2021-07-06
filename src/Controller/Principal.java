@@ -29,10 +29,10 @@ public class Principal {
     protected ArrayList <Integer> arrayOrdenado = new ArrayList<>();
     protected final FilesGenerate gerarPastas = new FilesGenerate();
     private final ExportDocuments export = new ExportDocuments();
-    private int interacoes=50;
-    private int totalValores=0;
-    private long tempoMedioQuick=0;
-    private long tempoMedioSelection=0;
+    private final int interacoes = 50;
+    private int totalValores = 0;
+    private long tempoMedioQuick=0, tempoMedioSelection=0;
+    private long desvioQuick=0, desvioSelection=0;
     
     public Principal(Desktop view){
         this.view = view;
@@ -125,6 +125,8 @@ public class Principal {
             timeSelection = timeSelection.divide(new BigDecimal(linhaSelection));
             tempoMedioSelection = timeSelection.longValueExact();
             
+            desvioSelection = desvioPadrao(tabelaSelection, timeSelection);
+            desvioQuick = desvioPadrao(tabelaQuick, timeQuick);
         }
     }
     
@@ -136,20 +138,24 @@ public class Principal {
         ExportDocuments exportar = new ExportDocuments();
         if(view.getCheckSelection().isSelected()){
             //Selection
-            exportar.exportarExcel("Salvar tabela Selection em ...", view.getTabelaSelection().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes+"", totalValores+"", tempoMedioSelection+"");
+            exportar.exportarExcel("Salvar tabela Selection em ...", view.getTabelaSelection().getModel(), 
+                    "/documents/Métodos de Ordenação/Dados Exportados", interacoes+"", totalValores+"", 
+                    tempoMedioSelection+"", desvioSelection+"");
 
         }
         if(view.getCheckQuick().isSelected()){
             //Quick
-            exportar.exportarExcel("Salvar tabela Quick em ...", view.getTabelaQuick().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes+"", totalValores+"", tempoMedioQuick+"");
+            exportar.exportarExcel("Salvar tabela Quick em ...", view.getTabelaQuick().getModel(), 
+                    "/documents/Métodos de Ordenação/Dados Exportados", interacoes+"", totalValores+"", 
+                    tempoMedioQuick+"", desvioQuick+"");
     
         }
     }
     
     public void salvarMedia(){
         ArrayList linhaSelection = new ArrayList<>(), linhaQuick = new ArrayList<>();
-        linhaSelection.add(interacoes+";"+totalValores+";"+tempoMedioSelection+";");
-        linhaQuick.add(interacoes+";"+totalValores+";"+tempoMedioQuick+";");
+        linhaSelection.add(interacoes+";"+totalValores+";"+tempoMedioSelection+";"+desvioSelection+";");
+        linhaQuick.add(interacoes+";"+totalValores+";"+tempoMedioQuick+";"+desvioQuick+";");
         
         export.geraArrayTxt(linhaSelection, System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Selection.txt");
         export.geraArrayTxt(linhaQuick, System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Quick.txt");
@@ -162,5 +168,36 @@ public class Principal {
                     "N"+gerarPastas.dataEHoraCodificada()+".txt");
             
         }
+    }
+    
+    protected long desvioPadrao(DefaultTableModel tabela, BigDecimal media){
+        int linhasTabela = tabela.getRowCount();
+        long variancia=0,desvio=0;
+        if(linhasTabela>0){
+            BigDecimal time = new BigDecimal(0);
+            BigDecimal diferenca;
+            BigDecimal auxiliar;
+            String dadoTabela="";
+            for(int repet=0; repet<linhasTabela; repet++){
+                try{
+                    dadoTabela = tabela.getValueAt(repet, 2).toString();
+                    diferenca= new BigDecimal(dadoTabela).subtract(media);
+                    time = time.add((diferenca).pow(2));
+                }catch(java.lang.ArithmeticException erro){};
+            }
+            
+            int valores;
+            if(linhasTabela==1){
+                valores = linhasTabela;
+            }
+            else{
+                valores = linhasTabela-1;
+            }
+            auxiliar = time.divide(new BigDecimal(valores), 4, BigDecimal.ROUND_UP);
+            desvio = (long) Math.sqrt(auxiliar.doubleValue());
+        }
+        
+        
+        return desvio;
     }
 }

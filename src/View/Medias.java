@@ -74,11 +74,11 @@ public class Medias extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Nº", "Itens", "Tempo(ns)"
+                "Nº", "Itens", "Tempo(ns)", "Desvio P. (ns)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -99,11 +99,11 @@ public class Medias extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Nº", "Itens", "Tempo(ns)"
+                "Nº", "Itens", "Tempo(ns)", "Desvio P. (ns)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

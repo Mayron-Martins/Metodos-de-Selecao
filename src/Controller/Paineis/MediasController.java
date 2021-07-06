@@ -80,13 +80,20 @@ public class MediasController extends Principal{
                 quantValoresSelection+=Integer.parseInt(dadoTabelaSelection);
             }
             timeSelection = timeSelection.divide(new BigDecimal(linhaSelection));
+            
+            long desvioSelection = desvioPadrao(tabelaMediaSelection, timeSelection);
+            long desvioQuick = desvioPadrao(tabelaMediaQuick, timeQuick);
 
             ExportDocuments exportar = new ExportDocuments();
             //Selection
-            exportar.exportarExcel("Salvar tabela de Médias Selection em ...", view2.getTabelaSelection().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", ""+interacoesSelection, ""+quantValoresSelection, timeSelection.toString());
+            exportar.exportarExcel("Salvar tabela de Médias Selection em ...", view2.getTabelaSelection().getModel(), 
+                    "/documents/Métodos de Ordenação/Dados Exportados", ""+interacoesSelection, ""+quantValoresSelection, 
+                    timeSelection.toString(), desvioSelection+"");
 
             //Quick
-            exportar.exportarExcel("Salvar tabela de Médias Quick em ...", view2.getTabelaQuick().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", ""+interacoesQuick, ""+quantValoresQuick, timeQuick.toString());
+            exportar.exportarExcel("Salvar tabela de Médias Quick em ...", view2.getTabelaQuick().getModel(), 
+                    "/documents/Métodos de Ordenação/Dados Exportados", ""+interacoesQuick, ""+quantValoresQuick, 
+                    timeQuick.toString(), desvioQuick+"");
         }
     }
     
@@ -122,12 +129,14 @@ public class MediasController extends Principal{
             int interacao=1;
             String quantNumeros="";
             String time="";
+            String desvio = "";
             
             for(String media : medias){
                 quantNumeros = media.split(";")[1].replace(";", "");
                 time = media.split(";")[2].replace(";", "");
+                desvio = media.split(";")[3].replace(";", "");
                 
-                Object dados[] = {interacao, quantNumeros, time};
+                Object dados[] = {interacao, quantNumeros, time, desvio};
                 
                 if(quick){
                     tabelaMediaQuick.addRow(dados);
@@ -138,5 +147,7 @@ public class MediasController extends Principal{
             }
         }
     }
+    
+    
     
 }

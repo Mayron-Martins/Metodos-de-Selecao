@@ -26,7 +26,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Mayro
  */
 public class ExportDocuments {
-    public void exportarExcel(String titulo, TableModel tabela, String caminho, String interacoes, String quantValores, String mediaTempos){
+    public void exportarExcel(String titulo, TableModel tabela, String caminho, String interacoes, String quantValores, String mediaTempos, String desvio){
         JFileChooser excelExportChooser = new JFileChooser();
         excelExportChooser.setCurrentDirectory(new File(System.getProperty("user.home")+caminho));
         excelExportChooser.setDialogTitle("Salvar Aquivo do Excel");
@@ -86,6 +86,8 @@ public class ExportDocuments {
                 cell.setCellValue("Valores");
                 cell = row.createCell(2);
                 cell.setCellValue("Média de Tempo(ns)");
+                cell = row.createCell(3);
+                cell.setCellValue("Desvio Padrão(ns)");
 
                 
                 //Adicionar valores
@@ -96,6 +98,8 @@ public class ExportDocuments {
                 cell.setCellValue(quantValores);
                 cell = row.createCell(2);
                 cell.setCellValue(mediaTempos);
+                cell = row.createCell(3);
+                cell.setCellValue(desvio);
 
                 
                FileOutputStream excelFIS = new FileOutputStream(excelExportChooser.getSelectedFile() + ".xlsx");

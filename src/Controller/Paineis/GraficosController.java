@@ -7,15 +7,18 @@ package Controller.Paineis;
 
 import Controller.Principal;
 import View.Desktop;
+import View.Grafico;
 
 /**
  *
  * @author Mayro
  */
-public class Graficos extends Principal{
+public class GraficosController extends Principal{
+    private final Grafico view2;
     
-    public Graficos(Desktop view) {
+    public GraficosController(Desktop view, Grafico view2) {
         super(view);
+        this.view2 = view2;
     }
     
 }

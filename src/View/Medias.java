@@ -5,18 +5,22 @@
  */
 package View;
 
+import Controller.Paineis.MediasController;
+import javax.swing.JTable;
+
 /**
  *
  * @author 55989
  */
 public class Medias extends javax.swing.JDialog {
-
+    private final MediasController controller;
     /**
      * Creates new form Medias
      */
-    public Medias(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Medias(Desktop desktop, boolean modal) {
+        super(desktop, modal);
         initComponents();
+        controller = new MediasController(desktop, this);
     }
 
   
@@ -194,7 +198,7 @@ public class Medias extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Medias dialog = new Medias(new javax.swing.JFrame(), true);
+                Medias dialog = new Medias(new Desktop(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -220,4 +224,14 @@ public class Medias extends javax.swing.JDialog {
     private javax.swing.JTable tabelaQuick;
     private javax.swing.JTable tabelaSelection;
     // End of variables declaration//GEN-END:variables
+
+    public JTable getTabelaQuick() {
+        return tabelaQuick;
+    }
+
+    public JTable getTabelaSelection() {
+        return tabelaSelection;
+    }
+
+    
 }

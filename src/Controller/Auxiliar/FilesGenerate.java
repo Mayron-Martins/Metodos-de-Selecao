@@ -22,5 +22,17 @@ public class FilesGenerate {
         if(!geracao.exists()){geracao.mkdirs();}
         if(!ordenacao.exists()){ordenacao.mkdirs();}
         if(!tabelas.exists()){tabelas.mkdirs();}
+        
+        File mediasSelection = new File(System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Selection.txt");
+        if(!mediasSelection.exists()){
+            ExportDocuments gerarTxt = new ExportDocuments();
+            gerarTxt.geraArquivoTxt("", mediasSelection.getPath());
+        }
+        
+        File mediasQuick = new File(System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Quick.txt");
+        if(!mediasQuick.exists()){
+            ExportDocuments gerarTxt = new ExportDocuments();
+            gerarTxt.geraArquivoTxt("", mediasQuick.getPath());
+        }
     }
 }

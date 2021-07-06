@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.Paineis.GraficosController;
+import Controller.Paineis.MediasController;
 import Controller.Principal;
 import Controller.auxiliar.FormatacaodeCamposRestritos;
 import javax.swing.JCheckBox;
@@ -19,6 +21,8 @@ import javax.swing.JTextField;
  */
 public class Desktop extends javax.swing.JFrame {
     private final Principal controller;
+    private final MediasController controllerMedias;
+    private final GraficosController controllerGraficos;
     private final Medias telaMedias;
     private final Grafico telaGrafico;
     
@@ -32,6 +36,9 @@ public class Desktop extends javax.swing.JFrame {
         
         telaMedias=new Medias(this, false);
         telaGrafico=new Grafico(this, false);
+        
+        controllerMedias = new MediasController(this, telaMedias);
+        controllerGraficos = new GraficosController(this, telaGrafico);
         
         this.trocaPaineis(false);
     }
@@ -327,10 +334,7 @@ public class Desktop extends javax.swing.JFrame {
 
     private void botaoMediasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMediasActionPerformed
         // TODO add your handling code here:
-        controller.visualizarMedias();
-        telaMedias.setModal(true);
-        telaMedias.setLocationRelativeTo(this);
-        telaMedias.setVisible(true);
+        controllerMedias.visualizarMedias();
     }//GEN-LAST:event_botaoMediasActionPerformed
 
     private void botaoGerarGrafico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarGrafico1ActionPerformed

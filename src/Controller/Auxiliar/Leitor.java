@@ -44,12 +44,15 @@ public class Leitor {
 
 
                     ArrayList<String> txt = new ArrayList<>();
-                    for (String line = reader.readLine(); line != null; line = reader.readLine())
+                    for (String line = reader.readLine(); line != null; line = reader.readLine()){
                         txt.add(line);
+                    }   
                     reader.close();
 
-                    for (String num : txt)
+                    for (String num : txt){
                         numList.add(Integer.parseInt(num));
+                    }
+                        
 
                 } catch (IOException e) {
                     System.out.println("Erro ao ler aquivo!");

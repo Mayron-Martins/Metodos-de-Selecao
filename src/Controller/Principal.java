@@ -9,9 +9,13 @@ import Controller.Auxiliar.ExportDocuments;
 import Controller.Auxiliar.FilesGenerate;
 import Controller.Auxiliar.Leitor;
 import View.Desktop;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,11 +23,15 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayro
  */
 public class Principal {
-    private final Desktop view;
-    private final DefaultTableModel tabelaSelection;
-    private final DefaultTableModel tabelaQuick;
-    private ArrayList <Integer> array = new ArrayList<>();
-    private ArrayList <Integer> arrayOrdenado = new ArrayList<>();
+    protected final Desktop view;
+    protected final DefaultTableModel tabelaSelection;
+    protected final DefaultTableModel tabelaQuick;
+    protected ArrayList <Integer> array = new ArrayList<>();
+    protected ArrayList <Integer> arrayOrdenado = new ArrayList<>();
+    private int interacoes=50;
+    private int totalValores=0;
+    private long tempoMedioQuick=0;
+    private long tempoMedioSelection=0;
     
     public Principal(Desktop view){
         this.view = view;
@@ -63,8 +71,8 @@ public class Principal {
             Quick_Sort quickSorte = new Quick_Sort();
             Selection_Sort selectionSort = new Selection_Sort();
 
-            for(int repet=0; repet<50; repet++){
-                selectionSort.SelectionSort(array);
+            for(int repet=0; repet<interacoes; repet++){
+                arrayOrdenado = selectionSort.SelectionSort(array);
                 Object dados[]={repet+1, array.size(), selectionSort.getTimeSelection()};
                 tabelaSelection.addRow(dados);
 
@@ -73,21 +81,16 @@ public class Principal {
                 tabelaSelection.addRow(dados2);
             }
 
-            //joga o valor do array ordenado em arrayOrdenado
+            obterMedia();
         }
         
     }
     
-    public void gerarGraficos(){
-        //Pega os dados da tabela e gera um gráfico em outra tela
-    }
-    
-    public void exportarDados(){
+    private void obterMedia(){
         int linhasQuick = tabelaQuick.getRowCount();
         int linhaSelection = tabelaSelection.getRowCount();
         if(linhasQuick>0||linhaSelection>0){
-            String interacoes = "50";
-            String quantValores = ""+array.size();
+            totalValores = array.size();
             
             
             BigDecimal timeQuick = new BigDecimal(0);
@@ -101,30 +104,47 @@ public class Principal {
                 timeQuick = timeQuick.add(new BigDecimal(dadoTabelaQuick));
             }
             timeQuick = timeQuick.divide(new BigDecimal(linhasQuick));
+            tempoMedioQuick = timeQuick.longValueExact();
             
             for(int i=0; i<linhaSelection; i++){
                 dadoTabelaSelection = tabelaSelection.getValueAt(i, 2).toString();
                 timeSelection = timeSelection.add(new BigDecimal(dadoTabelaSelection));
             }
             timeSelection = timeSelection.divide(new BigDecimal(linhaSelection));
-
-            ExportDocuments exportar = new ExportDocuments();
-            //Selection
-            exportar.exportarExcel(view.getTabelaSelection().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes, quantValores, timeSelection.toString());
-
-            //Quick
-            exportar.exportarExcel(view.getTabelaQuick().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes, quantValores, timeQuick.toString());
+            tempoMedioSelection = timeSelection.longValueExact();
+            
         }
     }
     
-    public void visualizarMedias(){
-        
+    public void gerarGraficos(){
+        //Pega os dados da tabela e gera um gráfico em outra tela
+    }
+    
+    public void exportarDados(){
+        ExportDocuments exportar = new ExportDocuments();
+        //Selection
+        exportar.exportarExcel(view.getTabelaSelection().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes+"", totalValores+"", tempoMedioSelection+"");
+
+        //Quick
+        exportar.exportarExcel(view.getTabelaQuick().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes+"", totalValores+"", tempoMedioQuick+"");
     }
     
     public void salvarMedia(){
-        //Inicia a função de criação de txt, se não existir
-        //Joga o valor das médias dentro do arquivo de txt
-        //Joga o valor das médias nas tabelas de médias
+        String linhaSelection = interacoes+";"+totalValores+";"+tempoMedioSelection+";";
+        String linhaQuick = interacoes+";"+totalValores+";"+tempoMedioQuick+";";
+        try {
+            FileWriter writerSelection = new FileWriter(System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Selection.txt", true);
+            FileWriter writerQuick = new FileWriter(System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Quick.txt", true);
+            
+            writerSelection.write(linhaSelection);
+            writerQuick.write(linhaQuick);
+            
+            writerQuick.close();
+            writerSelection.close();
+
+        } catch (IOException ex) {
+           JOptionPane.showMessageDialog(null, "Não foi possível gravar a média", "Falha!", JOptionPane.WARNING_MESSAGE);
+        }
     }
     
     public void exportarOrdenação(){

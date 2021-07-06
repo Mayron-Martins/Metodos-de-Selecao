@@ -5,18 +5,21 @@
  */
 package View;
 
+import Controller.Paineis.GraficosController;
+
 /**
  *
  * @author 55989
  */
 public class Grafico extends javax.swing.JDialog {
-
+    private final GraficosController controller;
     /**
      * Creates new form Gráfico
      */
-    public Grafico(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Grafico(Desktop desktop, boolean modal) {
+        super(desktop, modal);
         initComponents();
+        controller = new GraficosController(desktop, this);
     }
 
     /**
@@ -30,9 +33,9 @@ public class Grafico extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        painelSelection = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        painelQuick = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -44,20 +47,20 @@ public class Grafico extends javax.swing.JDialog {
         jLabel1.setText("Gráfico");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        painelSelection.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout painelSelectionLayout = new javax.swing.GroupLayout(painelSelection);
+        painelSelection.setLayout(painelSelectionLayout);
+        painelSelectionLayout.setHorizontalGroup(
+            painelSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 270, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        painelSelectionLayout.setVerticalGroup(
+            painelSelectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 250, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 270, 250));
+        jPanel1.add(painelSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 270, 250));
 
         jButton1.setBackground(new java.awt.Color(255, 70, 69));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -69,20 +72,20 @@ public class Grafico extends javax.swing.JDialog {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 480, 170, 40));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        painelQuick.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout painelQuickLayout = new javax.swing.GroupLayout(painelQuick);
+        painelQuick.setLayout(painelQuickLayout);
+        painelQuickLayout.setHorizontalGroup(
+            painelQuickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 270, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        painelQuickLayout.setVerticalGroup(
+            painelQuickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 250, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, -1, -1));
+        jPanel1.add(painelQuick, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,7 +141,7 @@ public class Grafico extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Grafico dialog = new Grafico(new javax.swing.JFrame(), true);
+                Grafico dialog = new Grafico(new Desktop(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -154,7 +157,7 @@ public class Grafico extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel painelQuick;
+    private javax.swing.JPanel painelSelection;
     // End of variables declaration//GEN-END:variables
 }

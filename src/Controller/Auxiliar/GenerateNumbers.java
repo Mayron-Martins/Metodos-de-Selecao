@@ -1,5 +1,5 @@
 
-package Controller;
+package Controller.Auxiliar;
 
 import java.util.Random;
 

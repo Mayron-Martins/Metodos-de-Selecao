@@ -116,6 +116,7 @@ public class ExportDocuments {
 			writer.newLine();
                         writer.flush();
                         writer.close();
+                        JOptionPane.showMessageDialog(null, "Exportado com Sucesso");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -131,6 +132,7 @@ public class ExportDocuments {
                         }
 			
                         writer.close();
+                        JOptionPane.showMessageDialog(null, "Exportado com Sucesso");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

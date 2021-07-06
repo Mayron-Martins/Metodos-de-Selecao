@@ -151,6 +151,7 @@ public class Principal {
             export.geraArrayTxt(arrayOrdenado, System.getProperty("user.home")+
                     "/documents/Métodos de Ordenação/Números Ordenados/"+arrayOrdenado.size()+
                     "N"+gerarPastas.dataEHoraCodificada()+".txt");
+            
         }
     }
 }

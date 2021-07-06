@@ -30,7 +30,7 @@ public class MediasController extends Principal{
     public MediasController(Desktop view, Medias view2) {
         super(view);
         tabelaMediaSelection = (DefaultTableModel) view2.getTabelaSelection().getModel();
-        tabelaMediaQuick = (DefaultTableModel) view2.getTabelaSelection().getModel();
+        tabelaMediaQuick = (DefaultTableModel) view2.getTabelaQuick().getModel();
         this.view2 = view2;
     }
 
@@ -83,10 +83,10 @@ public class MediasController extends Principal{
 
             ExportDocuments exportar = new ExportDocuments();
             //Selection
-            exportar.exportarExcel(view2.getTabelaSelection().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", ""+interacoesSelection, ""+quantValoresSelection, timeSelection.toString());
+            exportar.exportarExcel("Salvar tabela de Médias Selection em ...", view2.getTabelaSelection().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", ""+interacoesSelection, ""+quantValoresSelection, timeSelection.toString());
 
             //Quick
-            exportar.exportarExcel(view2.getTabelaQuick().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", ""+interacoesQuick, ""+quantValoresQuick, timeQuick.toString());
+            exportar.exportarExcel("Salvar tabela de Médias Quick em ...", view2.getTabelaQuick().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", ""+interacoesQuick, ""+quantValoresQuick, timeQuick.toString());
         }
     }
     

@@ -111,7 +111,7 @@
                   <Table columnCount="3" rowCount="0">
                     <Column editable="false" title="N&#xba;" type="java.lang.Object"/>
                     <Column editable="false" title="Itens" type="java.lang.Object"/>
-                    <Column editable="false" title="Time" type="java.lang.Object"/>
+                    <Column editable="false" title="Tempo(ns)" type="java.lang.Object"/>
                   </Table>
                 </Property>
               </Properties>
@@ -152,7 +152,7 @@
                   <Table columnCount="3" rowCount="0">
                     <Column editable="false" title="N&#xba;" type="java.lang.Object"/>
                     <Column editable="false" title="Itens" type="java.lang.Object"/>
-                    <Column editable="false" title="Time" type="java.lang.Object"/>
+                    <Column editable="false" title="Tempo(ns)" type="java.lang.Object"/>
                   </Table>
                 </Property>
               </Properties>

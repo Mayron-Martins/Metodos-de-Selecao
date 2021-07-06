@@ -95,7 +95,7 @@ public class Desktop extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nº", "Itens", "Time"
+                "Nº", "Itens", "Tempo(ns)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -115,7 +115,7 @@ public class Desktop extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nº", "Itens", "Time"
+                "Nº", "Itens", "Tempo(ns)"
             }
         ) {
             boolean[] canEdit = new boolean [] {

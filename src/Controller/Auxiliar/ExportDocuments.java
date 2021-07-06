@@ -26,7 +26,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Mayro
  */
 public class ExportDocuments {
-    public void exportarExcel(TableModel tabela, String caminho, String interacoes, String quantValores, String mediaTempos){
+    public void exportarExcel(String titulo, TableModel tabela, String caminho, String interacoes, String quantValores, String mediaTempos){
         JFileChooser excelExportChooser = new JFileChooser();
         excelExportChooser.setCurrentDirectory(new File(System.getProperty("user.home")+caminho));
         excelExportChooser.setDialogTitle("Salvar Aquivo do Excel");
@@ -34,6 +34,7 @@ public class ExportDocuments {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivo do Excel", "*.xls", "xls", "xlsx", "xlsn");
         excelExportChooser.addChoosableFileFilter(filter);
         excelExportChooser.setFileFilter(filter);
+        excelExportChooser.setDialogTitle(titulo);
         int excelchooser = excelExportChooser.showSaveDialog(null);
 
         if (excelchooser == JFileChooser.APPROVE_OPTION) {
@@ -82,9 +83,9 @@ public class ExportDocuments {
                 cell = row.createCell(0);
                 cell.setCellValue("Interações");
                 cell = row.createCell(1);
-                cell.setCellValue("Valores(*1000)");
+                cell.setCellValue("Valores");
                 cell = row.createCell(2);
-                cell.setCellValue("Média de Tempo");
+                cell.setCellValue("Média de Tempo(ns)");
 
                 
                 //Adicionar valores

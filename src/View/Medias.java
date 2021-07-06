@@ -74,7 +74,7 @@ public class Medias extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Nº", "Itens", "Time"
+                "Nº", "Itens", "Tempo(ns)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -99,7 +99,7 @@ public class Medias extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Nº", "Itens", "Time"
+                "Nº", "Itens", "Tempo(ns)"
             }
         ) {
             boolean[] canEdit = new boolean [] {

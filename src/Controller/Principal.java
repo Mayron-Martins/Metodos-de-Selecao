@@ -135,12 +135,12 @@ public class Principal {
         ExportDocuments exportar = new ExportDocuments();
         if(view.getCheckSelection().isSelected()){
             //Selection
-            exportar.exportarExcel(view.getTabelaSelection().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes+"", totalValores+"", tempoMedioSelection+"");
+            exportar.exportarExcel("Salvar tabela Selection em ...", view.getTabelaSelection().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes+"", totalValores+"", tempoMedioSelection+"");
 
         }
         if(view.getCheckQuick().isSelected()){
             //Quick
-            exportar.exportarExcel(view.getTabelaQuick().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes+"", totalValores+"", tempoMedioQuick+"");
+            exportar.exportarExcel("Salvar tabela Quick em ...", view.getTabelaQuick().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes+"", totalValores+"", tempoMedioQuick+"");
     
         }
     }

@@ -7,6 +7,9 @@ package View;
 
 import Controller.Principal;
 import Controller.auxiliar.FormatacaodeCamposRestritos;
+import javax.swing.JCheckBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 
 
@@ -427,4 +430,23 @@ public class Desktop extends javax.swing.JFrame {
         PainelSobreposto.setVisible(!gerarNumeros);
     }
 
+    public JTextField getCampoQuantidade() {
+        return campoQuantidade;
+    }
+
+    public JCheckBox getCheckQuick() {
+        return checkQuick;
+    }
+
+    public JCheckBox getCheckSelection() {
+        return checkSelection;
+    }
+
+    public JTable getTabelaQuick() {
+        return tabelaQuick;
+    }
+
+    public JTable getTabelaSelection() {
+        return tabelaSelection;
+    }
 }

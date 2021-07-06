@@ -8,6 +8,7 @@ package Controller;
 import Controller.Auxiliar.FilesGenerate;
 import View.Desktop;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,17 +16,28 @@ import java.util.ArrayList;
  */
 public class Principal {
     private final Desktop view;
+    private final DefaultTableModel tabelaSelection;
+    private final DefaultTableModel tabelaQuick;
     private ArrayList <Integer> array = new ArrayList<>();
     private ArrayList <Integer> arrayOrdenado = new ArrayList<>();
     
     public Principal(Desktop view){
         this.view = view;
+        tabelaSelection = (DefaultTableModel) view.getTabelaSelection().getModel();
+        tabelaQuick = (DefaultTableModel) view.getTabelaQuick().getModel();
         FilesGenerate gerarPastas = new FilesGenerate();
         gerarPastas.gerarPastas();
     }
     
     public void limparTabelas(){
-        //Pega as tabelas e limpa os campos
+        int quantLinhas = view.getTabelaQuick().getRowCount();
+        for(int i=0; i<quantLinhas; i++){
+            tabelaQuick.removeRow(0);
+        }
+        quantLinhas = view.getTabelaSelection().getRowCount();
+        for(int i=0; i<quantLinhas; i++){
+            tabelaSelection.removeRow(0);
+        }
     }
     public void gerarNumeros(){
         //Pega a quantidade de números a seres gerados

@@ -152,6 +152,5 @@ public class Principal {
                     "/documents/Métodos de Ordenação/Números Ordenados/"+arrayOrdenado.size()+
                     "N"+gerarPastas.dataEHoraCodificada()+".txt");
         }
-        
     }
 }

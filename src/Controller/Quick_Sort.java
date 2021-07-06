@@ -14,44 +14,41 @@ import java.util.ArrayList;
 public class Quick_Sort {
     private long timeQuick = 0;
     
-    public ArrayList<Integer> QuickSort(ArrayList<Integer> array,  int inicio, int fim){
+    public ArrayList<Integer> QuickSort(ArrayList<Integer> array,  int primeiro, int ultimo){
         timeQuick = System.nanoTime();
-        if (inicio < fim) {
-            int posicaoPivo = separar(array, inicio, fim);
-            QuickSort(array, inicio, posicaoPivo - 1);
-            QuickSort(array, posicaoPivo + 1, fim);
+        
+        int i = primeiro, f = ultimo;
+        int x = (int) (Math.random()*(ultimo-primeiro+1))+primeiro;
+        int pivo = array.get(x);
+        
+        while(i<=f){
+            while(i<ultimo && array.get(i)<pivo){
+                i++;
+            }
+            while(f>primeiro && array.get(f)>pivo){
+                f--;
+            }
+            
+            if(i<=f){
+                x = array.get(f);
+                array.set(f--, array.get(i));
+                array.set(i++, x);
+            }
         }
+        
+        if(primeiro<f){
+            QuickSort(array, primeiro, f);
+        }
+        if(i<ultimo){
+            QuickSort(array, i, ultimo);
+        }
+        
         timeQuick = System.nanoTime()-timeQuick;
         return array;
     }
-    
-       private int separar(ArrayList<Integer> vetor, int inicio, int fim) {
-             int pivo = vetor.get(inicio);
-             int i = inicio + 1, f = fim;
-             while (i <= f) {
-                    if (vetor.get(i) <= pivo){
-                        i++;
-                    } 
-                    else{if (pivo < vetor.get(f)){
-                        f--;
-                    }        
-                    else {
-                           int troca = vetor.get(i);
-                           vetor.set(i, vetor.get(f));
-                           vetor.set(f, troca);
-                           i++;
-                           f--;
-                    }
-                    }
-             }
-             vetor.set(inicio, vetor.get(f));
-             vetor.set(f, pivo);
-             return f;
-       }
 
     public long getTimeQuick() {
         return timeQuick;
     }
-       
        
 }

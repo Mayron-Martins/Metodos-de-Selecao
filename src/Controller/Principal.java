@@ -76,12 +76,16 @@ public class Principal {
         if(array!=null){
             Quick_Sort quickSorte = new Quick_Sort();
             Selection_Sort selectionSort = new Selection_Sort();
-
+            
+            //Para o método Selection
             for(int repet=0; repet<interacoes; repet++){
                 arrayOrdenado = selectionSort.SelectionSort(array);
                 Object dados[]={repet+1, array.size(), selectionSort.getTimeSelection()};
                 tabelaSelection.addRow(dados);
-
+            }
+            
+            //Para o método Quick
+            for(int repet=0; repet<interacoes; repet++){
                 quickSorte.QuickSort(array, 0, array.size()-1);
                 Object dados2[]={repet+1, array.size(), quickSorte.getTimeQuick()};
                 tabelaQuick.addRow(dados2);
@@ -129,11 +133,16 @@ public class Principal {
     
     public void exportarDados(){
         ExportDocuments exportar = new ExportDocuments();
-        //Selection
-        exportar.exportarExcel(view.getTabelaSelection().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes+"", totalValores+"", tempoMedioSelection+"");
+        if(view.getCheckSelection().isSelected()){
+            //Selection
+            exportar.exportarExcel(view.getTabelaSelection().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes+"", totalValores+"", tempoMedioSelection+"");
 
-        //Quick
-        exportar.exportarExcel(view.getTabelaQuick().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes+"", totalValores+"", tempoMedioQuick+"");
+        }
+        if(view.getCheckQuick().isSelected()){
+            //Quick
+            exportar.exportarExcel(view.getTabelaQuick().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes+"", totalValores+"", tempoMedioQuick+"");
+    
+        }
     }
     
     public void salvarMedia(){

@@ -6,6 +6,7 @@
 package Controller;
 
 import Controller.Auxiliar.FilesGenerate;
+import View.Desktop;
 import java.util.ArrayList;
 
 /**
@@ -13,10 +14,12 @@ import java.util.ArrayList;
  * @author Mayro
  */
 public class Principal {
+    private final Desktop view;
     private ArrayList <Integer> array = new ArrayList<>();
     private ArrayList <Integer> arrayOrdenado = new ArrayList<>();
     
-    public Principal(){
+    public Principal(Desktop view){
+        this.view = view;
         FilesGenerate gerarPastas = new FilesGenerate();
         gerarPastas.gerarPastas();
     }
@@ -65,6 +68,10 @@ public class Principal {
         else{
             //dados da tabela de médias
         }
+        
+    }
+    
+    public void visualizarMedias(){
         
     }
     

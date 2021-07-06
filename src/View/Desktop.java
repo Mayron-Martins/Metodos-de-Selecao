@@ -5,8 +5,8 @@
  */
 package View;
 
-import java.awt.GridLayout;
-import javax.swing.JButton;
+import Controller.Principal;
+import Controller.auxiliar.FormatacaodeCamposRestritos;
 
 
 
@@ -15,16 +15,22 @@ import javax.swing.JButton;
  * @author Mayro
  */
 public class Desktop extends javax.swing.JFrame {
-private final Medias telaMedias;
-private final Grafico telaGrafico;
+    private final Principal controller;
+    private final Medias telaMedias;
+    private final Grafico telaGrafico;
+    
     /**
      * Creates new form Desktop
      */
     public Desktop() {
         initComponents();
-        this.trocaPaineis(false);
+        controller = new Principal(this);
+        
+        
         telaMedias=new Medias(this, false);
         telaGrafico=new Grafico(this, false);
+        
+        this.trocaPaineis(false);
     }
 
     /**
@@ -47,7 +53,7 @@ private final Grafico telaGrafico;
         botaoGerar1 = new javax.swing.JButton();
         painelGeracaoNumeros = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        campoQuantidade = new javax.swing.JTextField();
+        campoQuantidade = new FormatacaodeCamposRestritos(3);
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         botaoImplementar = new javax.swing.JButton();
@@ -58,13 +64,15 @@ private final Grafico telaGrafico;
         botaoMedias = new javax.swing.JButton();
         botaoExportarOrdenacao = new javax.swing.JButton();
         botaoGerarGrafico = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        checkQuick = new javax.swing.JCheckBox();
+        checkSelection = new javax.swing.JCheckBox();
         btnSalvar = new javax.swing.JButton();
         botaoGerarGrafico1 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 750));
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -119,6 +127,11 @@ private final Grafico telaGrafico;
         botaoImportar.setForeground(new java.awt.Color(255, 255, 255));
         botaoImportar.setText("Importar Números");
         botaoImportar.setBorder(null);
+        botaoImportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoImportarActionPerformed(evt);
+            }
+        });
         PainelSobreposto.add(botaoImportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 56, 130, 40));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -167,6 +180,11 @@ private final Grafico telaGrafico;
         botaoImplementar.setForeground(new java.awt.Color(255, 255, 255));
         botaoImplementar.setText("Implementar Métodos");
         botaoImplementar.setBorder(null);
+        botaoImplementar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoImplementarActionPerformed(evt);
+            }
+        });
         painelGeracaoNumeros.add(botaoImplementar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 160, 30));
 
         botaoGerarNumeros.setBackground(new java.awt.Color(255, 70, 69));
@@ -174,6 +192,11 @@ private final Grafico telaGrafico;
         botaoGerarNumeros.setForeground(new java.awt.Color(255, 255, 255));
         botaoGerarNumeros.setText("Gerar Números");
         botaoGerarNumeros.setBorder(null);
+        botaoGerarNumeros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoGerarNumerosActionPerformed(evt);
+            }
+        });
         painelGeracaoNumeros.add(botaoGerarNumeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 130, 30));
 
         botaoFecharGeracao.setBackground(new java.awt.Color(255, 51, 51));
@@ -208,13 +231,18 @@ private final Grafico telaGrafico;
                 botaoMediasActionPerformed(evt);
             }
         });
-        jPanel1.add(botaoMedias, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 700, 120, 30));
+        jPanel1.add(botaoMedias, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 660, 130, 30));
 
         botaoExportarOrdenacao.setBackground(new java.awt.Color(46, 212, 123));
         botaoExportarOrdenacao.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         botaoExportarOrdenacao.setForeground(new java.awt.Color(102, 102, 102));
         botaoExportarOrdenacao.setText("Exportar Ordenação");
         botaoExportarOrdenacao.setBorder(null);
+        botaoExportarOrdenacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExportarOrdenacaoActionPerformed(evt);
+            }
+        });
         jPanel1.add(botaoExportarOrdenacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 680, 130, 40));
 
         botaoGerarGrafico.setBackground(new java.awt.Color(46, 212, 123));
@@ -229,25 +257,25 @@ private final Grafico telaGrafico;
         });
         jPanel1.add(botaoGerarGrafico, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, 130, 40));
 
-        jCheckBox1.setForeground(new java.awt.Color(51, 51, 51));
-        jCheckBox1.setText("Quick");
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 580, -1, -1));
+        checkQuick.setForeground(new java.awt.Color(51, 51, 51));
+        checkQuick.setText("Quick");
+        jPanel1.add(checkQuick, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 580, -1, -1));
 
-        jCheckBox2.setForeground(new java.awt.Color(51, 51, 51));
-        jCheckBox2.setText("Selection");
-        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 600, -1, -1));
+        checkSelection.setForeground(new java.awt.Color(51, 51, 51));
+        checkSelection.setText("Selection");
+        jPanel1.add(checkSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 600, -1, -1));
 
         btnSalvar.setBackground(new java.awt.Color(255, 70, 69));
         btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvar.setText("Salvar Dados");
+        btnSalvar.setText("Salvar Médias");
         btnSalvar.setBorder(null);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 650, 130, 40));
+        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 610, 130, 40));
 
         botaoGerarGrafico1.setBackground(new java.awt.Color(46, 212, 123));
         botaoGerarGrafico1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -261,6 +289,17 @@ private final Grafico telaGrafico;
         });
         jPanel1.add(botaoGerarGrafico1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 630, 130, 40));
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Sair do Programa");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 698, 130, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 750));
 
         pack();
@@ -272,7 +311,7 @@ private final Grafico telaGrafico;
     }//GEN-LAST:event_botaoFecharGeracaoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
+        controller.salvarMedia();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void botaoGerar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerar1ActionPerformed
@@ -280,21 +319,43 @@ private final Grafico telaGrafico;
     }//GEN-LAST:event_botaoGerar1ActionPerformed
 
     private void botaoGerarGraficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarGraficoActionPerformed
-        // TODO add your handling code here:
+        controller.exportarDados(false);
     }//GEN-LAST:event_botaoGerarGraficoActionPerformed
 
     private void botaoMediasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMediasActionPerformed
         // TODO add your handling code here:
+        controller.visualizarMedias();
         telaMedias.setModal(true);
         telaMedias.setLocationRelativeTo(this);
         telaMedias.setVisible(true);
     }//GEN-LAST:event_botaoMediasActionPerformed
 
     private void botaoGerarGrafico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarGrafico1ActionPerformed
+        controller.gerarGraficos();
         telaGrafico.setModal(true);
         telaGrafico.setLocationRelativeTo(this);
         telaGrafico.setVisible(true);
     }//GEN-LAST:event_botaoGerarGrafico1ActionPerformed
+
+    private void botaoImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImportarActionPerformed
+        controller.importarNumeros();
+    }//GEN-LAST:event_botaoImportarActionPerformed
+
+    private void botaoGerarNumerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarNumerosActionPerformed
+        controller.gerarNumeros();
+    }//GEN-LAST:event_botaoGerarNumerosActionPerformed
+
+    private void botaoImplementarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImplementarActionPerformed
+        controller.implementarOrdenacao();
+    }//GEN-LAST:event_botaoImplementarActionPerformed
+
+    private void botaoExportarOrdenacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExportarOrdenacaoActionPerformed
+        controller.exportarOrdenação();
+    }//GEN-LAST:event_botaoExportarOrdenacaoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -344,8 +405,9 @@ private final Grafico telaGrafico;
     private javax.swing.JButton botaoMedias;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JTextField campoQuantidade;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox checkQuick;
+    private javax.swing.JCheckBox checkSelection;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

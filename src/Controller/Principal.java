@@ -157,6 +157,7 @@ public class Principal {
             
             writerQuick.close();
             writerSelection.close();
+            JOptionPane.showMessageDialog(null, "Exportado com sucesso!");
 
         } catch (IOException ex) {
            JOptionPane.showMessageDialog(null, "Não foi possível gravar a média", "Falha!", JOptionPane.WARNING_MESSAGE);

@@ -121,10 +121,10 @@ public class ExportDocuments {
 		}
     }
     
-    public void geraArrayTxt(ArrayList <Integer> conteudo, String caminho) {
+    public void geraArrayTxt(ArrayList <?> conteudo, String caminho) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(caminho, true));  
-                        for(int numero : conteudo){
+                        for(Object numero : conteudo){
                             writer.write(""+numero);
                             writer.newLine();
                             writer.flush();

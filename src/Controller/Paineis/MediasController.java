@@ -68,7 +68,7 @@ public class MediasController extends Principal{
                 timeQuick = timeQuick.add(new BigDecimal(dadoTabelaQuick));
                 
                 dadoTabelaQuick = tabelaMediaQuick.getValueAt(i, 1).toString();
-                quantValoresQuick+=(quantValoresQuick*Integer.parseInt(dadoTabelaQuick));
+                quantValoresQuick+=Integer.parseInt(dadoTabelaQuick);
             }
             timeQuick = timeQuick.divide(new BigDecimal(linhasQuick));
             
@@ -77,7 +77,7 @@ public class MediasController extends Principal{
                 timeSelection = timeSelection.add(new BigDecimal(dadoTabelaSelection));
                 
                 dadoTabelaSelection = tabelaMediaSelection.getValueAt(i, 1).toString();
-                quantValoresSelection+=(quantValoresSelection*Integer.parseInt(dadoTabelaSelection));
+                quantValoresSelection+=Integer.parseInt(dadoTabelaSelection);
             }
             timeSelection = timeSelection.divide(new BigDecimal(linhaSelection));
 
@@ -91,6 +91,7 @@ public class MediasController extends Principal{
     }
     
     public void visualizarMedias(){
+        limparTabelas();
         inserirMediasTabelas(System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Selection.txt", false);
         inserirMediasTabelas(System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Quick.txt", true);
         

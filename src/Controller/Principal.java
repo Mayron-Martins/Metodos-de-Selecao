@@ -28,6 +28,7 @@ public class Principal {
     protected ArrayList <Integer> array = new ArrayList<>();
     protected ArrayList <Integer> arrayOrdenado = new ArrayList<>();
     protected final FilesGenerate gerarPastas = new FilesGenerate();
+    private final ExportDocuments export = new ExportDocuments();
     private int interacoes=50;
     private int totalValores=0;
     private long tempoMedioQuick=0;
@@ -146,27 +147,16 @@ public class Principal {
     }
     
     public void salvarMedia(){
-        String linhaSelection = interacoes+";"+totalValores+";"+tempoMedioSelection+";";
-        String linhaQuick = interacoes+";"+totalValores+";"+tempoMedioQuick+";";
-        try {
-            FileWriter writerSelection = new FileWriter(System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Selection.txt", true);
-            FileWriter writerQuick = new FileWriter(System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Quick.txt", true);
-            
-            writerSelection.write(linhaSelection);
-            writerQuick.write(linhaQuick);
-            
-            writerQuick.close();
-            writerSelection.close();
-            JOptionPane.showMessageDialog(null, "Exportado com sucesso!");
-
-        } catch (IOException ex) {
-           JOptionPane.showMessageDialog(null, "Não foi possível gravar a média", "Falha!", JOptionPane.WARNING_MESSAGE);
-        }
+        ArrayList linhaSelection = new ArrayList<>(), linhaQuick = new ArrayList<>();
+        linhaSelection.add(interacoes+";"+totalValores+";"+tempoMedioSelection+";");
+        linhaQuick.add(interacoes+";"+totalValores+";"+tempoMedioQuick+";");
+        
+        export.geraArrayTxt(linhaSelection, System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Selection.txt");
+        export.geraArrayTxt(linhaQuick, System.getProperty("user.home")+"/documents/Métodos de Ordenação/Medias Quick.txt");
     }
     
     public void exportarOrdenação(){
         if(arrayOrdenado!=null){
-            ExportDocuments export = new ExportDocuments();
             export.geraArrayTxt(arrayOrdenado, System.getProperty("user.home")+
                     "/documents/Métodos de Ordenação/Números Ordenados/"+arrayOrdenado.size()+
                     "N"+gerarPastas.dataEHoraCodificada()+".txt");

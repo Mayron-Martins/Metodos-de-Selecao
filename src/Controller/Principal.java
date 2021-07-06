@@ -5,8 +5,12 @@
  */
 package Controller;
 
+import Controller.Auxiliar.ExportDocuments;
 import Controller.Auxiliar.FilesGenerate;
+import Controller.Auxiliar.Leitor;
 import View.Desktop;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -46,41 +50,71 @@ public class Principal {
     }
     
     public void importarNumeros(){
-        //Inicia a função de importação de valores
-        //Joga o valor em array
-        //Implementa a função Thread de Leitura de cada método de seleção
+        Leitor ler = new Leitor();
+        array = ler.leitor();
+        if(array!=null){
+            implementarOrdenacao();
+        }
     }
     
     public void implementarOrdenacao(){
-        //limpar tabelas
-        //Verifica e pega o valor do array
-        Quick_Sort quickSorte = new Quick_Sort();
-        Selection_Sort selectionSort = new Selection_Sort();
-        
-        for(int repet=0; repet<50; repet++){
-            //Realiza a operação de ordenação com o Selection
-            //Coloca o valor de tempo no campo correspondente
-            
-            //Realiza a operação de ordenação com Quick
-            //Coloca o valor de tempo no campo correspondente
+        limparTabelas();
+        if(array!=null){
+            Quick_Sort quickSorte = new Quick_Sort();
+            Selection_Sort selectionSort = new Selection_Sort();
+
+            for(int repet=0; repet<50; repet++){
+                selectionSort.SelectionSort(array);
+                Object dados[]={repet+1, array.size(), selectionSort.getTimeSelection()};
+                tabelaSelection.addRow(dados);
+
+                quickSorte.QuickSort(array, 0, array.size()-1);
+                Object dados2[]={repet+1, array.size(), selectionSort.getTimeSelection()};
+                tabelaSelection.addRow(dados2);
+            }
+
+            //joga o valor do array ordenado em arrayOrdenado
         }
         
-        //joga o valor do array ordenado em arrayOrdenado
     }
     
     public void gerarGraficos(){
         //Pega os dados da tabela e gera um gráfico em outra tela
     }
     
-    public void exportarDados(boolean medias){
-        //Pega os dados da tabela, faz as médias e inicia a função de exportar para excel
-        if(!medias){
-            //dados da tabela principal
+    public void exportarDados(){
+        int linhasQuick = tabelaQuick.getRowCount();
+        int linhaSelection = tabelaSelection.getRowCount();
+        if(linhasQuick>0||linhaSelection>0){
+            String interacoes = "50";
+            String quantValores = ""+array.size();
+            
+            
+            BigDecimal timeQuick = new BigDecimal(0);
+            BigDecimal timeSelection = new BigDecimal(0);
+            String dadoTabelaQuick;
+            String dadoTabelaSelection;
+            
+            
+            for(int i=0; i<linhasQuick; i++){
+                dadoTabelaQuick = tabelaQuick.getValueAt(i, 2).toString();
+                timeQuick = timeQuick.add(new BigDecimal(dadoTabelaQuick));
+            }
+            timeQuick = timeQuick.divide(new BigDecimal(linhasQuick));
+            
+            for(int i=0; i<linhaSelection; i++){
+                dadoTabelaSelection = tabelaSelection.getValueAt(i, 2).toString();
+                timeSelection = timeSelection.add(new BigDecimal(dadoTabelaSelection));
+            }
+            timeSelection = timeSelection.divide(new BigDecimal(linhaSelection));
+
+            ExportDocuments exportar = new ExportDocuments();
+            //Selection
+            exportar.exportarExcel(view.getTabelaSelection().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes, quantValores, timeSelection.toString());
+
+            //Quick
+            exportar.exportarExcel(view.getTabelaQuick().getModel(), "/documents/Métodos de Ordenação/Dados Exportados", interacoes, quantValores, timeQuick.toString());
         }
-        else{
-            //dados da tabela de médias
-        }
-        
     }
     
     public void visualizarMedias(){

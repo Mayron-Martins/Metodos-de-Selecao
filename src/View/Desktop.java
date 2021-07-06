@@ -322,7 +322,7 @@ public class Desktop extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoGerar1ActionPerformed
 
     private void botaoGerarGraficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarGraficoActionPerformed
-        controller.exportarDados(false);
+        controller.exportarDados();
     }//GEN-LAST:event_botaoGerarGraficoActionPerformed
 
     private void botaoMediasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMediasActionPerformed

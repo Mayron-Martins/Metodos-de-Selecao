@@ -7,6 +7,7 @@ package Controller;
 
 import Controller.Auxiliar.ExportDocuments;
 import Controller.Auxiliar.FilesGenerate;
+import Controller.Auxiliar.GenerateNumbers;
 import Controller.Auxiliar.Leitor;
 import View.Desktop;
 import java.io.FileWriter;
@@ -50,9 +51,16 @@ public class Principal {
         }
     }
     public void gerarNumeros(){
-        //Pega a quantidade de números a seres gerados
-        //Inicia a função de geração de números com retorno do array
-        //Joga o valor da função em array
+        String campo = view.getCampoQuantidade().getText();
+        if(!campo.trim().equals("")&&campo!=null){
+            int quantidade = Integer.parseInt(campo)*1000;
+            if(quantidade!=0){
+                GenerateNumbers generate = new GenerateNumbers();
+                array = generate.gerarNumeros(quantidade);
+                view.gerarNumeros(false);
+            }
+            
+        }
     }
     
     public void importarNumeros(){
@@ -75,11 +83,12 @@ public class Principal {
                 tabelaSelection.addRow(dados);
 
                 quickSorte.QuickSort(array, 0, array.size()-1);
-                Object dados2[]={repet+1, array.size(), selectionSort.getTimeSelection()};
-                tabelaSelection.addRow(dados2);
+                Object dados2[]={repet+1, array.size(), quickSorte.getTimeQuick()};
+                tabelaQuick.addRow(dados2);
             }
 
             obterMedia();
+            view.gerarNumeros(true);
         }
         
     }

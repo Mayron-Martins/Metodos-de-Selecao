@@ -21,6 +21,8 @@ public class Leitor {
                     
             FileNameExtensionFilter extensao = new FileNameExtensionFilter("Arquivos do Texto", "txt");
             JFileChooser arquivoEscolhido = new JFileChooser();
+            arquivoEscolhido.setCurrentDirectory(new File(System.getProperty("user.home")+
+                    "/documents/Métodos de Ordenação/Números Gerados"));
             arquivoEscolhido.setFileFilter(extensao);
             arquivoEscolhido.setDialogTitle("Selecione o arquivo para ordenação");
             arquivoEscolhido.setFileSelectionMode(JFileChooser.FILES_ONLY);

@@ -113,10 +113,8 @@ public class ExportDocuments {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(caminho, true));  
 			writer.write(conteudo);
-			writer.newLine();
                         writer.flush();
                         writer.close();
-                        JOptionPane.showMessageDialog(null, "Exportado com Sucesso");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -126,7 +124,7 @@ public class ExportDocuments {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(caminho, true));  
                         for(int numero : conteudo){
-                            writer.write(numero);
+                            writer.write(""+numero);
                             writer.newLine();
                             writer.flush();
                         }

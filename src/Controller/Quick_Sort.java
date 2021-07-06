@@ -29,16 +29,19 @@ public class Quick_Sort {
              int pivo = vetor.get(inicio);
              int i = inicio + 1, f = fim;
              while (i <= f) {
-                    if (vetor.get(i) <= pivo)
-                           i++;
-                    else if (pivo < vetor.get(f))
-                           f--;
+                    if (vetor.get(i) <= pivo){
+                        i++;
+                    } 
+                    else{if (pivo < vetor.get(f)){
+                        f--;
+                    }        
                     else {
                            int troca = vetor.get(i);
                            vetor.set(i, vetor.get(f));
                            vetor.set(f, troca);
                            i++;
                            f--;
+                    }
                     }
              }
              vetor.set(inicio, vetor.get(f));

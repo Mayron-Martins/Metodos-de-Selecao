@@ -9,16 +9,10 @@ import Controller.Auxiliar.ExportDocuments;
 import Controller.Auxiliar.FilesGenerate;
 import Controller.Auxiliar.GenerateNumbers;
 import Controller.Auxiliar.Leitor;
-import Controller.Paineis.GraficosController;
 import View.Desktop;
 import View.Grafico;
-import java.awt.Dialog;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**

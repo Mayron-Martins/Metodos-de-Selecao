@@ -17,6 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -82,27 +83,38 @@ public class Principal {
     public void implementarOrdenacao(){
         limparTabelas();
         if(array!=null){
+            ArrayList<Integer> arrayAuxiliar = new ArrayList<>();
             Quick_Sort quickSorte = new Quick_Sort();
             Selection_Sort selectionSort = new Selection_Sort();
             
+
             //Para o método Selection
             for(int repet=0; repet<interacoes; repet++){
-                arrayOrdenado = selectionSort.SelectionSort(array);
-                Object dados[]={repet+1, array.size(), selectionSort.getTimeSelection()};
+                arrayAuxiliar.addAll(array);
+
+                arrayOrdenado = selectionSort.SelectionSort(arrayAuxiliar);
+
+                Object dados[]={repet+1, arrayAuxiliar.size(), selectionSort.getTimeSelection()};
                 tabelaSelection.addRow(dados);
+                
+                arrayAuxiliar=new ArrayList<>();
             }
             
             //Para o método Quick
             for(int repet=0; repet<interacoes; repet++){
-                quickSorte.QuickSort(array, 0, array.size()-1);
-                Object dados2[]={repet+1, array.size(), quickSorte.getTimeQuick()};
+                arrayAuxiliar.addAll(array);
+                
+                quickSorte.QuickSort(arrayAuxiliar, 0, arrayAuxiliar.size()-1);
+                
+                Object dados2[]={repet+1, arrayAuxiliar.size(), quickSorte.getTimeQuick()};
                 tabelaQuick.addRow(dados2);
+                
+                arrayAuxiliar=new ArrayList<>();
             }
 
             obterMedia();
             view.gerarNumeros(true);
         }
-        
     }
     
     private void obterMedia(){

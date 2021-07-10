@@ -10,17 +10,15 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.JDesktopPane;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYDifferenceRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -30,14 +28,16 @@ import org.jfree.data.xy.XYSeriesCollection;
  * @author Mayro
  */
 public class GraphicsGenerate {
-    public JFreeChart gerarGraficos(JDialog painel, ArrayList <Long> array, String titulo){
+    private JFreeChart chart;
+    public XYDataset gerarGraficos(ArrayList <Long> array, String titulo){
         XYSeries pontos = pontos(array);
         XYDataset dataSetAreaXY = new XYSeriesCollection(pontos);
         
         JFreeChart grafico = graficoJFree(titulo, dataSetAreaXY);
-        exibirGraficoEmFrame(painel, grafico);
+        exibirGraficoEmFrame(grafico, titulo);
         
-        return grafico;
+        this.chart = grafico;
+        return dataSetAreaXY;
     }
     
     private XYSeries pontos(ArrayList <Long> array){
@@ -64,17 +64,38 @@ public class GraphicsGenerate {
         return graficoAreaXY;
     }
     
-    private void exibirGraficoEmFrame(JDialog painel, JFreeChart graficoAreaXY){
-        JFrame frame = new JFrame("Gráficos dos Métodos de Inserção");
+    private void exibirGraficoEmFrame(JFreeChart graficoAreaXY, String titulo){
+        JFrame frame = new JFrame("Gráfico das Médias do "+titulo);
         frame.setPreferredSize(new Dimension(280, 290));
         ChartPanel painelDoGrafico = new ChartPanel(graficoAreaXY);
         painelDoGrafico.setPreferredSize(new Dimension(260, 280));
         frame.add(painelDoGrafico);
         frame.pack();
-        frame.setLocationRelativeTo(painel);
         frame.setLocation(10, 90);
         frame.setVisible(true);
     }
+    
+    /*
+    public void diferencaGraficos(XYDataset graficoA, XYDataset graficoB){
+        JFrame frame = new JFrame("Gráfico Comparativo dos Métodos");
+        frame.setPreferredSize(new Dimension(280, 290));
+
+        XYDifferenceRenderer renderer = new XYDifferenceRenderer();
+        XYPlot plot = new XYPlot();
+        plot.setDataset(0,graficoA);
+        plot.setDataset(1,graficoB);
+        plot.setRenderer(renderer);
+        
+        JFreeChart chart = new JFreeChart(plot);
+        chart.removeLegend();
+        
+        ChartPanel painelDoGrafico = new ChartPanel(chart);
+        painelDoGrafico.setPreferredSize(new Dimension(260, 280));
+        frame.add(painelDoGrafico);
+        frame.pack();
+        frame.setLocation(10, 90);
+        frame.setVisible(true);
+    }*/
     
     public void criarArquivoJPEG(JFreeChart graficoAreaXY, String path, int largura, int altura){
         File arquivo = new File(path+".jpeg");
@@ -85,4 +106,10 @@ public class GraphicsGenerate {
             JOptionPane.showMessageDialog(null, "Falha ao exportar Gráfico");
         }
     }
+
+    public JFreeChart getChart() {
+        return chart;
+    }
+    
+    
 }

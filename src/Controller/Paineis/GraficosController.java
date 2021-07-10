@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.data.xy.XYDataset;
 
 /**
  *
@@ -27,6 +28,8 @@ public class GraficosController extends Principal{
     private final GraphicsGenerate graficos = new GraphicsGenerate();
     private ArrayList<Long> temposSelection, temposQuick;
     private JFreeChart graphicSelection, graphicsQuick;
+    private XYDataset datasetSelection, datasetQuick;
+    
     
     public GraficosController(Desktop view, Grafico view2, DefaultTableModel selection, DefaultTableModel quick) {
         super(view);
@@ -42,11 +45,14 @@ public class GraficosController extends Principal{
         view2.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         
         if(temposSelection!=null){
-            graphicSelection = graficos.gerarGraficos(view2, temposSelection, "Método Selection Sort");
+            datasetSelection = graficos.gerarGraficos(temposSelection, "Método Selection Sort");
+            graphicSelection = graficos.getChart();
         }
         if(temposQuick!=null){
-            graphicsQuick = graficos.gerarGraficos(view2, temposQuick, "Método Quick Sort");
+            datasetQuick = graficos.gerarGraficos(temposQuick, "Método Quick Sort");
+            graphicsQuick = graficos.getChart();
         }
+        
         view2.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         view2.setVisible(true);
     }

@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -71,7 +72,7 @@ public class MediasController extends Principal{
                 dadoTabelaQuick = tabelaMediaQuick.getValueAt(i, 1).toString();
                 quantValoresQuick+=Integer.parseInt(dadoTabelaQuick);
             }
-            timeQuick = timeQuick.divide(new BigDecimal(linhasQuick));
+            timeQuick = timeQuick.divide(new BigDecimal(linhasQuick), 4, RoundingMode.UP);
             
             for(int i=0; i<linhaSelection; i++){
                 dadoTabelaSelection = tabelaMediaSelection.getValueAt(i, 2).toString();
@@ -80,7 +81,7 @@ public class MediasController extends Principal{
                 dadoTabelaSelection = tabelaMediaSelection.getValueAt(i, 1).toString();
                 quantValoresSelection+=Integer.parseInt(dadoTabelaSelection);
             }
-            timeSelection = timeSelection.divide(new BigDecimal(linhaSelection));
+            timeSelection = timeSelection.divide(new BigDecimal(linhaSelection), 4, RoundingMode.UP);
             
             long desvioSelection = desvioPadrao(tabelaMediaSelection, timeSelection);
             long desvioQuick = desvioPadrao(tabelaMediaQuick, timeQuick);
@@ -89,12 +90,12 @@ public class MediasController extends Principal{
             //Selection
             exportar.exportarExcel("Salvar tabela de Médias Selection em ...", view2.getTabelaSelection().getModel(), 
                     "/documents/Métodos de Ordenação/Dados Exportados", ""+interacoesSelection, ""+quantValoresSelection, 
-                    timeSelection.toString(), desvioSelection+"");
+                    timeSelection.longValue()+"", desvioSelection+"");
 
             //Quick
             exportar.exportarExcel("Salvar tabela de Médias Quick em ...", view2.getTabelaQuick().getModel(), 
                     "/documents/Métodos de Ordenação/Dados Exportados", ""+interacoesQuick, ""+quantValoresQuick, 
-                    timeQuick.toString(), desvioQuick+"");
+                    timeQuick.longValue()+"", desvioQuick+"");
         }
     }
     

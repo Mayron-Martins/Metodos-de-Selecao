@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class Quick_Sort {
     private long timeQuick = 0;
     
-    public ArrayList<Integer> QuickSort(ArrayList<Integer> array,  int primeiro, int ultimo){
-        timeQuick = System.nanoTime();
+    public long QuickSort(ArrayList<Integer> array,  int primeiro, int ultimo){
+        long nanotime = System.nanoTime();
         
         int i = primeiro, f = ultimo;
         int x = (int) (Math.random()*(ultimo-primeiro+1))+primeiro;
@@ -43,12 +43,9 @@ public class Quick_Sort {
             QuickSort(array, i, ultimo);
         }
         
-        timeQuick = System.nanoTime()-timeQuick;
-        return array;
-    }
-
-    public long getTimeQuick() {
+        timeQuick = System.nanoTime()-nanotime;
         return timeQuick;
     }
+
        
 }

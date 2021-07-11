@@ -13,6 +13,7 @@ import View.Desktop;
 import View.Grafico;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -93,14 +94,15 @@ public class Principal {
                 
                 arrayAuxiliar=new ArrayList<>();
             }
-            
+            long nanotime;
             //Para o método Quick
             for(int repet=0; repet<interacoes; repet++){
                 arrayAuxiliar.addAll(array);
                 
-                quickSorte.QuickSort(arrayAuxiliar, 0, arrayAuxiliar.size()-1);
+                nanotime = quickSorte.QuickSort(arrayAuxiliar, 0, arrayAuxiliar.size()-1);
                 
-                Object dados2[]={repet+1, arrayAuxiliar.size(), quickSorte.getTimeQuick()};
+                
+                Object dados2[]={repet+1, arrayAuxiliar.size(), nanotime};
                 tabelaQuick.addRow(dados2);
                 
                 arrayAuxiliar=new ArrayList<>();
@@ -108,6 +110,7 @@ public class Principal {
 
             obterMedia();
             view.gerarNumeros(true);
+            JOptionPane.showMessageDialog(null, "Sucesso!");
         }
     }
     

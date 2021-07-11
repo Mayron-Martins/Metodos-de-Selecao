@@ -16,7 +16,7 @@ public class Selection_Sort {
     private long timeSelection = 0;
     
     public ArrayList<Integer> SelectionSort(ArrayList <Integer> array){
-        timeSelection = System.nanoTime();
+        long nanotime = System.nanoTime();
         for (int fixo = 0; fixo < array.size() - 1; fixo++) {
         int menor = fixo;
             for (int i = menor + 1; i < array.size(); i++) {
@@ -30,7 +30,7 @@ public class Selection_Sort {
               array.set(menor, t);
             }
       }
-        timeSelection = System.nanoTime()-timeSelection;
+        timeSelection = System.nanoTime()-nanotime;
         return array;
     }
 

@@ -12,6 +12,7 @@ import Controller.Auxiliar.Leitor;
 import View.Desktop;
 import View.Grafico;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -131,15 +132,15 @@ public class Principal {
                 dadoTabelaQuick = tabelaQuick.getValueAt(i, 2).toString();
                 timeQuick = timeQuick.add(new BigDecimal(dadoTabelaQuick));
             }
-            timeQuick = timeQuick.divide(new BigDecimal(linhasQuick));
-            tempoMedioQuick = timeQuick.longValueExact();
+            timeQuick = timeQuick.divide(new BigDecimal(linhasQuick),4, RoundingMode.UP);
+            tempoMedioQuick = timeQuick.longValue();
             
             for(int i=0; i<linhaSelection; i++){
                 dadoTabelaSelection = tabelaSelection.getValueAt(i, 2).toString();
                 timeSelection = timeSelection.add(new BigDecimal(dadoTabelaSelection));
             }
-            timeSelection = timeSelection.divide(new BigDecimal(linhaSelection));
-            tempoMedioSelection = timeSelection.longValueExact();
+            timeSelection = timeSelection.divide(new BigDecimal(linhaSelection),4, RoundingMode.UP);
+            tempoMedioSelection = timeSelection.longValue();
             
             desvioSelection = desvioPadrao(tabelaSelection, timeSelection);
             desvioQuick = desvioPadrao(tabelaQuick, timeQuick);
